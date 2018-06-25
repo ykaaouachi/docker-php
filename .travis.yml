@@ -1,0 +1,12 @@
+language: bash
+services: docker
+
+matrix:
+  include:
+    - env: VERSION=5.6 VARIANT=fpm
+    - env: VERSION=7 VARIANT=fpm
+
+script: - docker build -t "ykaaouachi/php:${VERSION}-${VARIANT}" -f "Dockerfile.${VERSION}-${VARIANT}" .
+
+after_script:
+- docker images
